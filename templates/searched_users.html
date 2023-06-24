@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if profiles %}
+<h2>PROFILES</h2>
+{% for profile in profiles %}
+<p><a href="{% url 'profile_detail' profile.pk  %}">{{profile}}</a></p>
+<a href="{% url 'profile_detail' profile.pk  %}"> <img src="{{ profile.profile_image.url }}" alt="" width="200"> </a>
+{% endfor %}
+{% else %}
+
+<p>there is not profiles with name {{name}}</p>
+{% endif %}
+{% endblock content %}
