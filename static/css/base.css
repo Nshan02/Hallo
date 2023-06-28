@@ -9,8 +9,9 @@ header {
     padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:center;
     height: 50px;
+
   }
   
   
@@ -35,25 +36,54 @@ header {
 .post {
   background-color: rgb(231, 231, 231);
   margin: auto;
-  width: 50%;
+  width: 60%;
   border: 3px solid rgb(255, 255, 255);
   padding: 10px;
+  top: 30%;
 }
 
 .postdetail {
-  height: 80px;
-  width: 120px;
-  color: rgb(51, 92, 30);
-  background-color: bisque;
+  height: 30%;
+  color: rgb(0, 0, 0);
+  background-color: rgb(231, 231, 231);
   margin: auto;
-  width: 50%;
-
 }
 
-/* .profile {
+.post1{
+  background-color: rgb(231, 231, 231);
+  margin: auto;
+  width: 40%;
+  border: 3px solid rgb(255, 255, 255);
+  padding: 10px;
+  top: 30%;
+  
+}
+
+.post-title {
+  margin: auto;
+  width: 20%;
+  color: blue;
+  /* position: fixed; */
+  top: 100px;
+  left: 45%;
+}
+
+
+/* .post_pr{
+  background-color: rgb(231, 231, 231);
   margin: auto;
   width: 50%;
   border: 3px solid rgb(255, 255, 255);
   padding: 10px;
-  
 } */
+
+.pr{
+  width: 25%;
+  border-right: 2px solid rgb(255, 245, 178);
+  position: fixed;
+}
+
+
+.comments{
+  color: rgb(13, 206, 13);
+}

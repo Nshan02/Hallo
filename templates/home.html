@@ -8,9 +8,15 @@
 
 {% for post in posts_list %}
 <div class="post">
-    
-    <img src="{{post.profile.profile_image.url}}" alt="" width="200"><h3><a href="{% url 'profile_detail' post.profile.pk %}">{{post.profile}}</a> ~~ <a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h3>
+    {% if post.profile.profile_image %}
+        <img src="{{post.profile.profile_image.url}}" alt="" width="200">
+    {% else %}
+        <img src="{% static 'images/user.jpg/' %}" alt="" width="200" >
+    {% endif %}    
+    <h3><a href="{% url 'profile_detail' post.profile.pk %}">{{post.profile}}</a> ~~ <a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h3>
     <p>{{post.body}}</p>
+    
+
 
  <a href="{% url 'post_detail' post.pk %}">comments</a>
  

@@ -11,8 +11,13 @@
 <body>
 
     <header>
-        <h1><a href="{% url 'home' %}">HOME</a> </h1>
-     
+        <div>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/h-94x94.jpg' %}"  style="height: 3.8rem;">
+            <!-- <div class="a1"> <a href="{% url 'home' %}" class="a1"> HALLO </a> </div> -->
+        </a>
+        </div>
+
         {% if user.profile_user %}
             <a href="{% url 'profile_detail' user.profile_user.pk %}">My Profile</a>
         {% else %}

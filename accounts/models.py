@@ -11,7 +11,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=150)
     category = models.CharField(max_length=150)
     birth_date = models.DateField()
-    profile_image = models.ImageField(null=True,blank=True,upload_to='images/')
+    profile_image = models.ImageField(null=True,blank=True,upload_to='images/',default='user.jpg')
     
 
     def get_age(self):
@@ -28,6 +28,7 @@ class Profile(models.Model):
     
     def get_absolute_url(self):
         return reverse('profile_detail',kwargs={'pk':self.pk})
+    
     
     def get_friends(self):
         friendship1 = Friendship.objects.filter(user1 = self)

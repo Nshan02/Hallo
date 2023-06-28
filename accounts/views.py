@@ -26,6 +26,12 @@ class ProfileCreateView(CreateView):
 class ProfileDetailView(DetailView):
     model = Profile
     template_name = 'profile_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = self.object.user.profile_user.posts.all()
+        context['posts'] = posts
+        return context
     
 
 class ProfileUpdateView(UpdateView):
@@ -33,7 +39,6 @@ class ProfileUpdateView(UpdateView):
     template_name = 'profile_update.html'
     fields = ['category','first_name','last_name','birth_date','profile_image',]
     
-
 
 @login_required
 def AddFriend(request, user_id):

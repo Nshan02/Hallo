@@ -7,7 +7,7 @@ class Post(models.Model):
     
     title = models.CharField(max_length=150)
     body = models.TextField()
-    profile = models.ForeignKey(Profile,related_name='post_profile',on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,related_name='posts',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -19,9 +19,6 @@ class Post(models.Model):
         comments = Comment.objects.filter(post = self)
         return comments
     
-    def get_posts(self):
-        posts = Post.objects.get(profile = self)
-        return posts
     
 class Comment(models.Model):
 

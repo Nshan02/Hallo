@@ -1,24 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Profile</h2>
+
+
+
 
 {% if profile.profile_image %}
-    <img src="{{profile.profile_image.url}}" alt="" width="200">
+<div class="pr">
     
+    <img src="{{profile.profile_image.url}}" alt="" width="200">
+
+{% else %}
+<div class="pr">
+    
+    <img src="{% static 'images/user.jpg/' %}" alt="" width="200" >
+
 {% endif %}
-<div class="profile">
-    <h2>{{profile}} ~~ {{profile.get_age}} </h2>
-    <h3>{{profile.category}}</h3>
+
+    
 
 {% if profile.pk == user.profile_user.pk %}
-    <a href="{% url 'profile_update' profile.pk %}">Manage Profile</a>
-    <h3>friends</h3>
-    {% for friend in profile.get_friends %}
-      <p> <a href="{% url 'profile_detail' friend.pk %}">{{friend}}</a></p> 
+    <div class="profile">
+        <h2>{{profile}} ~~ {{profile.get_age}} </h2>
+        <h3>{{profile.category}}</h3>
+        <a href="{% url 'profile_update' profile.pk %}" >Manage Profile</a>
+        <h3>friends</h3>
+        {% for friend in profile.get_friends %}
+            <p> <a href="{% url 'profile_detail' friend.pk %}">{{friend}}</a></p> 
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class="post-title">
+    <h2  >my posts</h2>
+</div>
+    
+    {% for post in posts %}
+    
+    <div class="post1">
+            
+        <h3><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h3>
+        <p>{{post.body}}</p>
+    
+        <a href="{% url 'post_detail' post.pk %}">comments</a>
+     
+    </div>
+
     {% endfor %}
 
 {% else %}
+
+    <div class="profile">
+        <h2>{{profile}} ~~ {{profile.get_age}} </h2>
+        <h3>{{profile.category}}</h3>
     {% if user.profile_user not in profile.get_friends %}
         <form action="{% url 'add_friend' profile.pk %}" method="post">
             {% csrf_token %}
@@ -31,11 +67,46 @@
         <button type="submit">delete friend</button>
         </form>
     {% endif %}
+
+    </div>
+</div>
+<div class="post-title">
+    <h2  >{{profile.first_name}}'s posts</h2>
 </div>
     
+    {% for post in posts %}
     
+    <div class="post1">
+            
+        <h3><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h3>
+        <p>{{post.body}}</p>
+    
+        <a href="{% url 'post_detail' post.pk %}">comments</a>
+     
+    </div>
 
+    {% endfor %}
 {% endif %}
 
 
+
+
 {% endblock content %}
+
+
+<!-- <div class="post-title">
+    <h2  >my posts</h2>
+    </div>
+    
+    {% for post in posts %}
+    
+    <div class="post">
+            
+        <h3><a href="{% url 'profile_detail' post.profile.pk %}">{{post.profile}}</a> ~~ <a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h3>
+        <p>{{post.body}}</p>
+    
+     <a href="{% url 'post_detail' post.pk %}">comments</a>
+     
+    </div>
+
+    {% endfor %} -->
